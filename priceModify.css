@@ -1,0 +1,332 @@
+html, body {
+	font-size: 12px;
+}
+body {
+	padding-top: 100px;
+}
+
+.ui.disabled.input input {
+    pointer-events: none;
+}
+
+.clearfix {
+	zoom: 1; 
+}
+.clearfix:after {
+	content: '\20';
+	display: block;
+	clear: both;
+	width: 0;
+	height: 0;
+	font-size: 0;
+	visibility: hidden;
+}
+.hide {
+	display: none!important;
+}
+
+.policy-price {
+	border: 1px solid #eee;
+	margin-bottom: 10px;
+}
+.policy-price.cnotedit .btn-group .btn-dis-contr{
+	cursor: default;
+    opacity: .45!important;
+    background-image: none!important;
+    box-shadow: none!important;
+    pointer-events: none;
+}
+div.policy-price.hide-cal .pname-btns {
+	border-bottom-width: 0!important;
+}
+div.policy-price.hide-cal .btn-cal, div.policy-price.hide-cal .op-btns, div.policy-price.hide-cal .price-cal, div.policy-price.hide-cal .pname-btns .ft-btns {
+	display: none;
+}
+.policy-price .pname-btns {
+	padding: 5px 10px;
+	border-bottom: 1px solid #eee;
+	position: relative;
+}
+.policy-price .pname-btns .policy-name {
+	display: inline-block;
+	line-height: 32px;
+}
+.policy-price .pname-btns .btn-group {
+	float:right;
+}
+.policy-price .btn-group {
+	font-size: 0;
+}
+.policy-price .btn-group .circular {
+	margin-left: 10px;
+}
+.policy-price .btn-group i.chevron.up {
+	transition: all .3s ease-in-out;
+}
+.policy-price .btn-group i.chevron.checked {
+	-moz-transform-origin: center 7px;;
+	-webkit-transform-origin: center 7px;;
+	-o-transform-origin: center 7px;;
+	transform-origin: center 7px;;
+	-moz-transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+.policy-price .btn-group button {	
+	position: relative;
+}
+.policy-price .pname-btns .ft-btns {
+	/*position: absolute;*/
+	top: 0;
+	left: 0;
+	background-color: #fff;
+	/*border: 1px solid #ddd;*/
+	padding: 5px 5px 0;
+	z-index: 10;
+	text-align: center;
+}
+.policy-price .pname-btns .ft-btns > button {
+	margin-bottom: 5px;
+}
+.policy-price .pname-btns .op-btns {
+	position: absolute;
+	bottom: -43px;
+	right: 10px;
+}
+.policy-price .pname-btns .btn-cal {
+	position: absolute;
+    bottom: -44px;
+    right: 50%;
+    background-color: #fff;
+    margin-right: -51px;
+}
+.policy-price .btn-cal button.button {
+	background-color: #fff;
+	border: 1px solid #ccc;
+	width: 35px;
+	height: 35px;
+	box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 rgba(34,36,38,.15) inset;
+}
+.policy-price .btn-group button i.label {
+	position: absolute;
+	right: -10px;
+	top: -10px;
+	z-index: 100;
+	font-style: normal;
+	font-weight: normal;
+	font-family: "Arial";
+}
+.policy-price .btn-group button i.label.empty {
+	right: -3px;
+	top: -3px;
+}
+.policy-price .cal-main, .policy-price .eb-cal-main {
+	width: 100%;
+}
+.policy-price .cal-main .cal-container>p, .policy-price .eb-cal-main .cal-container>p {
+	text-align: center;
+}
+.policy-price .cal-main .cal-container>p span {
+	display: inline-block;
+	cursor: pointer;
+}
+.policy-price .price-cal {
+	padding: 10px;
+	min-height: 150px;
+	overflow: hidden;
+}
+.policy-price .price-cal .single-cal {
+	width: 49%;
+	/*height: 435px;*/
+	float: left;
+	border-right: 1px solid #eee;
+}
+.policy-price .price-cal .single-cal:last-child {
+	border-right-width: 0;
+}
+.policy-price .single-cal .cal-container {
+	margin: 5px;
+}
+.policy-price .cal-container .cal-body div {
+	float:left;
+	text-align: left;
+	/*height: 56px;*/
+	/*width: 86px;*/
+    width: 80px;
+	margin: 0 0 5px 5px;
+	cursor: pointer;
+	color: #ccc;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	position: relative;
+}
+.policy-price .cal-body div:not([class=cal-header]) {
+	min-height: 63px;
+}
+.cal-body .cal-header {
+	/*width: 91px!important;*/
+    width: 86px!important;
+	/*height: 30px!important;*/
+	line-height: 26px;
+	background-color: #fff!important;
+	border-width: 0!important;
+	margin: 0!important;
+	color: #333!important;
+	text-align: center!important;
+	margin-bottom: 5px!important;
+}
+.cal-body .cal-header:hover {
+	background-color: #ddd;
+}
+.cal-body .no-cell {background-color :#fff;}
+.cal-body .cal-cell {
+	border-top:2px solid #eee;
+	background-color: #fbfbfb;
+	padding: 5px;
+	font-size: 1.6em;
+	line-height: .8em;
+}
+.cal-body .cal-cell b, .cal-body .cal-cell i {
+	display: inline-block;
+	width: 100%;
+	text-align: right;
+	font-weight: normal;
+	font-style: normal;
+	color: #f63;
+	font-size: 12px;
+    font-family: Times, serif;
+}
+.cal-body .cal-cell.invalid {
+    background-color: #F8F8F8;
+    border-color: #ccc;	
+}
+.cal-body .cal-cell.invalid > * {
+	color: #555!important;
+} 
+.cal-body .cal-cell i {
+	color: #50b400;
+}
+.cal-body .cal-cell ins {
+	position: absolute;
+	left: 5px;
+	bottom: 5px;
+	text-decoration: none;
+	font-size: 12px;
+	color: #666;
+}
+.cal-body .no-cell {background-color: #fff!important;}
+.cal-body .cal-cell:hover {background-color: #fcfcfc!important;}
+.cal-body .cal-cell._mutilSel_sel {background-color: #ecf2f8!important;border-top-color:#98aec7;color: #68809c!important;}
+.cal-body .cal-cell._mutilSel_preSel {background-color: #FEF8E6!important;}
+.cal-body .cal-today {background-color: #FFE9E5!important;border-top-color: #FFBFBF;color: #FEA4A3!important;}
+.cal-body .warnprice {background-color: #ffe497!important;border-top-color: #fbbd08;}
+.cal-body .cal-notic {background-color: #FDABAB!important;border-top-color: #DA0000;color: #fff!important;}
+
+.policy-price .scenery-price-sync {
+	margin-right: 3px;
+}
+.policy-price .scenery-price-sync .ui.dropdown .item.active {
+	font-weight: normal!important;
+}
+.policy-price .scenery-auto-sync {
+	margin-right: 10px;
+}
+.policy-price .scenery-auto-sync label {
+	font-size: 1rem;
+	padding-left: 4rem!important;
+}
+.hide-year span>a {
+	display: none;
+}
+.show-ca span>a {
+	display: initial;
+}
+
+.show-policy-detail div.ui.tab[data-tab="spd-2"] .ui.card {
+	margin: .1em;
+}
+.policy-price .eb-sale-edit {
+	position: absolute;
+	display: inline-block;
+	top: 100px;
+	left: 10px;
+	padding: 10px;
+	background-color: #fff;
+	border: 1px solid #eee;
+  width: 260px;
+  z-index: 1000;
+}
+.policy-price .eb-sale-edit input {
+	width: 100px;
+	margin-right: 10px;
+}
+
+.daterange .rangelist {
+	max-height: 400px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+#policyMain {
+	padding-bottom: 50px;
+}
+
+#policyMain .winfo {
+    font-size: 1.5em;
+    text-align: center;
+    padding: 100px 0;
+    color: #888;
+}
+
+#policyMain #policy-pagination {
+	margin-top: 20px;
+}
+
+.policy-price .policy-name span.label{
+    font-style: normal;
+    font-weight: normal;
+    padding: .2em;
+    line-height: 1;
+    display: inline-block;
+    margin-right: .5em;
+}
+
+.container {
+	padding: 0 10px;
+	width: 1299px;
+	margin: 0 auto;
+}
+
+.btn-cal.buttons {
+	width: 135px;
+	margin: 0 auto;
+}
+
+.ui.button {
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.ui.button:focus {
+	outline: none;
+}
+
+.ui.button:active {
+	background: #f8f8f8!important;
+	color: rgba(0,0,0,.9)!important;
+}
+
+.ui.button:first-child {
+	border-right: none !important;
+    margin-left: 0;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.ui.button:last-child {
+	border-left: none !important;
+    margin-left: 0;
+	border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
