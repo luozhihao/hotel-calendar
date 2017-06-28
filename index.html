@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日历组件</title>
+    <link rel="stylesheet" href="./priceModify.css">
+</head>
+
+<body>
+    <div class="container" id="policyMain">
+        <div class="policy-price">
+            <div class="btn-cal buttons">
+                <button class="ui button prevmonth" title="上翻一月"><</i></button><button class="ui button curtmonth" title="回到本月">·</button><button class="ui button nextmonth" title="下翻一月">></i></button>
+            </div>
+            <div class="price-cal clearfix">
+                <div class="cal-main clearfix">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="http://js.40017.cn/cn/public/jquery/jquery.min.js?v=201706151625"></script>
+<script src="./components.cls.js"></script>
+<script type="text/javascript">
+(function() {
+
+    // 静态数据
+    var data = {
+        "PriceDetailList": [{
+            "PolicyId": 4258,
+            "PolicyName": "[标准价]",
+            "SourceFrom": 1,
+            "SourceFromName": "自签",
+            "BreakfastCount": 2,
+            "CanEdit": true,
+            "PaymentType": 2,
+            "BreakfastCountName": "双早",
+            "EBPriceApplyCount": 0,
+            "EveryDayPrice": [{
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-01",
+                "AdmountAdvice": 100,
+                "AmountContract": 18500,
+                "SalePrice": 27800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": -1,
+                "CreateTime": "2017-02-17",
+                "UpdateTime": "2017-02-17",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-02",
+                "AdmountAdvice": 100,
+                "AmountContract": 18500,
+                "SalePrice": 27800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-02-17",
+                "UpdateTime": "2017-02-17",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-03",
+                "AdmountAdvice": 100,
+                "AmountContract": 18500,
+                "SalePrice": 27800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-02-17",
+                "UpdateTime": "2017-03-03",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-04",
+                "AdmountAdvice": 100,
+                "AmountContract": 18500,
+                "SalePrice": 27800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-02-17",
+                "UpdateTime": "2017-03-03",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-05",
+                "AdmountAdvice": 100,
+                "AmountContract": 18500,
+                "SalePrice": 27800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-02-17",
+                "UpdateTime": "2017-03-03",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-06",
+                "AdmountAdvice": 100,
+                "AmountContract": 18500,
+                "SalePrice": 27800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-02-17",
+                "UpdateTime": "2017-03-03",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-07",
+                "AdmountAdvice": 100,
+                "AmountContract": 18500,
+                "SalePrice": 26800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-07",
+                "UpdateTime": "2017-03-07",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-08",
+                "AdmountAdvice": 100,
+                "AmountContract": 18500,
+                "SalePrice": 26800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-07",
+                "UpdateTime": "2017-03-07",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-09",
+                "AdmountAdvice": 100,
+                "AmountContract": 18500,
+                "SalePrice": 26800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-07",
+                "UpdateTime": "2017-03-07",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-10",
+                "AdmountAdvice": 100,
+                "AmountContract": 18500,
+                "SalePrice": 26800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-07",
+                "UpdateTime": "2017-03-07",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-11",
+                "AdmountAdvice": 100,
+                "AmountContract": 18500,
+                "SalePrice": 26800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-07",
+                "UpdateTime": "2017-03-07",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-12",
+                "AdmountAdvice": 100,
+                "AmountContract": 18500,
+                "SalePrice": 26800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-07",
+                "UpdateTime": "2017-03-07",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-13",
+                "AdmountAdvice": 100,
+                "AmountContract": 18500,
+                "SalePrice": 26800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-07",
+                "UpdateTime": "2017-03-07",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-14",
+                "AdmountAdvice": 100,
+                "AmountContract": 18500,
+                "SalePrice": 26800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-07",
+                "UpdateTime": "2017-03-07",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-15",
+                "AdmountAdvice": 100,
+                "AmountContract": 14000,
+                "SalePrice": 23800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-15",
+                "UpdateTime": "2017-03-15",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-16",
+                "AdmountAdvice": 100,
+                "AmountContract": 14000,
+                "SalePrice": 23800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-15",
+                "UpdateTime": "2017-03-15",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-17",
+                "AdmountAdvice": 100,
+                "AmountContract": 14000,
+                "SalePrice": 23800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-15",
+                "UpdateTime": "2017-03-17",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-18",
+                "AdmountAdvice": 100,
+                "AmountContract": 14000,
+                "SalePrice": 23800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-15",
+                "UpdateTime": "2017-03-15",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-19",
+                "AdmountAdvice": 100,
+                "AmountContract": 14000,
+                "SalePrice": 23800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-15",
+                "UpdateTime": "2017-03-15",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-20",
+                "AdmountAdvice": 100,
+                "AmountContract": 14000,
+                "SalePrice": 23800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-15",
+                "UpdateTime": "2017-03-15",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-21",
+                "AdmountAdvice": 100,
+                "AmountContract": 14000,
+                "SalePrice": 23800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-15",
+                "UpdateTime": "2017-03-15",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-22",
+                "AdmountAdvice": 100,
+                "AmountContract": 14000,
+                "SalePrice": 23800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-15",
+                "UpdateTime": "2017-03-22",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-23",
+                "AdmountAdvice": 100,
+                "AmountContract": 14000,
+                "SalePrice": 23800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-15",
+                "UpdateTime": "2017-03-23",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-24",
+                "AdmountAdvice": 100,
+                "AmountContract": 14000,
+                "SalePrice": 23800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-15",
+                "UpdateTime": "2017-03-23",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-25",
+                "AdmountAdvice": 100,
+                "AmountContract": 14000,
+                "SalePrice": 23800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-15",
+                "UpdateTime": "2017-03-23",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-26",
+                "AdmountAdvice": 100,
+                "AmountContract": 14000,
+                "SalePrice": 23800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-15",
+                "UpdateTime": "2017-03-15",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-27",
+                "AdmountAdvice": 100,
+                "AmountContract": 14000,
+                "SalePrice": 23800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-15",
+                "UpdateTime": "2017-03-21",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-28",
+                "AdmountAdvice": 100,
+                "AmountContract": 14000,
+                "SalePrice": 23800,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-15",
+                "UpdateTime": "2017-03-21",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-29",
+                "AdmountAdvice": 100,
+                "AmountContract": 14000,
+                "SalePrice": 22000,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-15",
+                "UpdateTime": "2017-03-29",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-30",
+                "AdmountAdvice": 100,
+                "AmountContract": 14000,
+                "SalePrice": 22000,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-15",
+                "UpdateTime": "2017-03-29",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }, {
+                "ProductUniqueId": 4258,
+                "ResourceId": 98517,
+                "ResourceProductId": 1548,
+                "SupplierBasicId": 1108,
+                "ResourceType": 0,
+                "PriceDate": "2017-03-31",
+                "AdmountAdvice": 100,
+                "AmountContract": 14000,
+                "SalePrice": 22000,
+                "MinAmountDirect": 0,
+                "MaxAmountDirect": 0,
+                "DataFlag": 1,
+                "CreateTime": "2017-03-15",
+                "UpdateTime": "2017-03-29",
+                "BreakfastCount": 2,
+                "AddBedAmount": -1,
+                "OtherCurrencyType": "",
+                "OtherCurrencyAmount": -1
+            }]
+        }],
+        "CurrentPageIndex": 1,
+        "TotalCount": 1
+    }
+
+    // 早餐类型
+    var bfstr = function(a) {
+      if (a == 255)
+        return '含早';
+      else if (a == 0)
+        return '无早';
+      else if (a == 1)
+        return '单早';
+      else if (a == 2)
+        return '双早';
+      else if (a == 3)
+        return '三早';
+      else if (a == 4)
+        return '四早';
+      else if (a >= 5)
+        return '多早';
+      else
+        return '--';
+    };
+
+    // 渲染日历
+    function randerCalendar(prevDate, nextDate) {
+        var now = new Date().getTime();
+
+        var calendar = '<div class="single-cal">\
+                    <div class="cal-container">\
+                        <p><span class="prev-time" data-time="' + prevDate + '"></span></p>\
+                        <div id="prev_' + now + '" class="cal-body">\
+                        </div>\
+                    </div>\
+                </div>\
+                <div class="single-cal">\
+                    <div class="cal-container">\
+                        <p><span class="next-time" data-time="' + nextDate + '"></span></p>\
+                        <div id="next_' + now + '" class="cal-body">\
+                        </div>\
+                    </div>\
+                </div>'
+
+        $('.cal-main').empty().html(calendar);
+
+        var cal1 = $('#prev_' + now).fenCal(prevDate, {
+            auto: false,
+            adddatecls: true
+        });
+
+        var cal2 = $('#next_' + now).fenCal(nextDate, {
+            auto: false,
+            adddatecls: true
+        });
+
+        cal1.original.parent().find("p>span").text(cal1.date.year + "年" + cal1.date.month + "月");
+        cal2.original.parent().find("p>span").text(cal2.date.year + "年" + cal2.date.month + "月");
+    }
+
+    // 渲染价格
+    function randerPrice(data) {
+        var nowDate = new Date();
+
+        var p = data.PriceDetailList[0],
+            nyear = nowDate.getFullYear(),
+            nmonth = nowDate.getMonth() + 1,
+            ndate = nowDate.getDate();
+
+        if (nmonth > 12) {
+            nyear++;
+            nmonth = nmonth - 12;
+        }
+
+        for (var j = 0, e = p.EveryDayPrice; j < e.length; j++) {
+            var d = $(".cal-date-" + e[j].PriceDate.replace(/-/g, ''));
+
+            if (d.get(0)) {
+                var f = d.get(0).calendar,
+                    c = f.date,
+                    x = e[j];
+
+                d.removeClass('invalid').removeClass('noprice').removeClass('isswitch').removeClass('isago').removeClass('warnprice');
+
+                if (x.SalePrice < x.AmountContract) {
+                    d.addClass("warnprice");
+                }
+
+                var amountContract = (x.AmountContract / 100).toFixed(2),
+                    salePrice = (x.SalePrice / 100).toFixed(2);
+
+                if (x.DataFlag == 0) { // 无效
+                    d.addClass("invalid").html(c + '<b>' + amountContract + '</b><i>' + salePrice + '</i><ins>' + bfstr(x.BreakfastCount) + '</ins>');
+                } else if (x.DataFlag == -1) { // 没有设置价格
+                    d.addClass('noprice').html(c + '<b>--</b><i>--</i><ins>--</ins>');
+                } else {
+                    d.html(c + '<b>' + amountContract + '</b><i>' + salePrice + '</i><ins>' + bfstr(x.BreakfastCount) + '</ins>');
+                }
+
+                if (f.year < nyear) d.addClass("isago");
+                if (f.year == nyear && f.month < nmonth) d.addClass("isago");
+                if (f.year == nyear && f.month == nmonth && f.date < ndate) d.addClass("isago");
+            }
+        }
+    }
+
+    // 切换日历时间
+    function getTime(time, type) {
+        var month = '',
+            year = '';
+
+        var arr = time.split('-');
+
+        if (type === 1) {
+            if (parseInt(arr[1]) === 1) {
+                month = 12;
+                year = parseInt(arr[0]) - 1;
+            } else {
+                month = parseInt(arr[1]) - 1;
+                year = parseInt(arr[0]);
+            }
+        } else {
+            if (parseInt(arr[1]) === 12) {
+                month = 1;
+                year = parseInt(arr[0]) + 1;
+            } else {
+                month = parseInt(arr[1]) + 1;
+                year = parseInt(arr[0]);
+            }
+        }
+
+        month = month < 10 ? ('0' + month) : month;
+
+        return year + '-' + month
+    }
+
+    // 刷新日历数据
+    function refreshCalendar() {
+        var prev = $('.prev-time').attr('data-time');
+        var next = $('.next-time').attr('data-time');
+        
+        randerCalendar(prev, next);
+        randerPrice(data);
+    }
+
+    // 渲染当前月数据
+    function renderCurMonth() {
+        var date = new Date(),
+            year = date.getFullYear(),
+            month = date.getMonth() + 1;
+
+        month = month < 10 ? ('0' + month) : month;
+
+        var time = year + '-' + month;
+        var prevMonth = getTime(time, 1);
+        
+        randerCalendar(prevMonth, time);
+        randerPrice(data);
+    }
+
+    // 上一个月
+    $('.prevmonth').on('click', function() {
+        var time = $('.prev-time').attr('data-time');
+        var prev = getTime(time, 1);
+
+        randerCalendar(prev, time);
+        randerPrice(data);
+    });
+
+    // 下一个月
+    $('.nextmonth').on('click', function() {
+        var time = $('.next-time').attr('data-time');
+        var next = getTime(time, 2);
+
+        randerCalendar(time, next);
+        randerPrice(data);
+    });
+
+    // 回到当前月
+    $('.curtmonth').on('click', function() {
+        renderCurMonth();
+    });
+
+    renderCurMonth();
+})();
+</script>
+</html>
